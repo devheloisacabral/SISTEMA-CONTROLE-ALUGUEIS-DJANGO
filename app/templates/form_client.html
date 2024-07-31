@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+
+{% block title %}Register Client{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="container"style="margin-top: 100px">
+    <div class="d-flex gap-40 mt-3" >
+        <form class="col-md-4" action="{% url 'client-create' %}" method="post">
+            {% csrf_token %}
+            <h3>Register Client</h3>
+            {% for field in form %}
+            <div class="mt-3">
+                {{field.label}}
+                {{field}}
+            </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-primary mt-3" value="Save">
+        </form>
+        
+    </div> 
+</div>
+{% endblock %}

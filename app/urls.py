@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.index, name='index'),
     path('location', app.views.list_location, name='list_location'),
-    path('form-client', app.views.form_client, name='client-create')
+    path('form-client', app.views.form_client, name='client-create'),
+    path('form-property', app.views.form_property, name='property-create'),
 
 ]
 if settings.DEBUG:

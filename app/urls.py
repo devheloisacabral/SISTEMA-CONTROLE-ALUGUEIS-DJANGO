@@ -26,6 +26,7 @@ urlpatterns = [
     path('location', app.views.list_location, name='list_location'),
     path('form-client', app.views.form_client, name='client-create'),
     path('form-property', app.views.form_property, name='property-create'),
+    path('form-location/<int:id>/', app.views.register_location_form, name='location-create'),
 
 ]
 if settings.DEBUG:

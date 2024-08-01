@@ -36,3 +36,18 @@ def form_property(request):
                     PropertyImage.objects.create(property_save=property_save, imagem=file)
             return redirect(list_location)
     return render(request, 'form_property.html', {'form': form})
+
+def register_location_form(request, id):
+    get_property = Property.objects.get(id=id)
+    form = RegisterLocationForm()
+    if request.method == 'POST':
+        form = PropertyForm(request.POST)
+        if form.is_valid():
+            property_form = form.save(commit=False)
+            property_form.property = get_property #vai salvar o id da propriedade
+            property_form.is_locate = True
+            property_form.save()
+            return redirect(list_location)
+    context = {'form': form, 'location': get_property}
+    return render(request, 'form-location.html', context)
+

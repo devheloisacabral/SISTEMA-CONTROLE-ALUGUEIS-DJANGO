@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Relatório{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Initial Register</th>
+                <th scope="col">Final Register</th>
+                <th scope="col">Client</th>
+                <th scope="col">Code</th>
+                <th scope="col">Type Property</th>
+                <th scope="col">Price</th>
+                <th scope="col">Status (Located)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for immobile in property %}
+            <tr>
+                <td scope="row">{{immobile.id}}</td>
+
+                <td scope="row">{% for location in immobile.property_location.all %}{{location.dt_start|date:"d/m/Y"}}{% endfor %}</td>
+                <td scope="row">{% for location in immobile.property_location.all %}{{location.dt_end|date:"d/m/Y"}}{% endfor %}</td>
+                <td scope="row">{% for location in immobile.property_location.all %}{{location.client}}{% endfor %}</td>
+
+                <td scope="row">{{immobile.code}}</td>
+                <td scope="row">{{immobile.type_item}}</td>
+                <td scope="row">R$ {{immobile.price}}</td>
+
+                <td scope="row">
+                    {% if immobile.is_locate == True %}
+                    <i class="fas fa-check-circle fa-2x link-success"></i>
+                    {% else %}
+                    <i class="fas fa-minus-circle fa-2x link-danger"></i>
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row g-3 align-items-center m-3 p-3">
+    <div class="col-auto">
+        <form action="{% url 'reports' %}">
+            <label>Location Status</label>
+            <select name="is_locate" class="form-select" onchange="this.form.submit()">
+                <option></option>
+                <option value="True" {% if request.GET.is_locate == 'True' %}selected{% endif %}>LOCATED</option>
+                <option value="False" {% if request.GET.is_locate == 'False' %}selected{% endif %}>FREE</option>
+            </select>
+        </form>
+    </div>
+
+
+    <div class="col-auto">
+        <a class="btn btn-danger" href="{% url 'reports' %}"><i class="fas fa-window-close"></i></a>
+    </div>
+</div>
+
+{% endblock %}

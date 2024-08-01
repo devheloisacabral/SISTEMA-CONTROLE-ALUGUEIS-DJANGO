@@ -22,11 +22,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app.views.index, name='index'),
+    path('', app.views.list_location, name='list_locationn'),
     path('location', app.views.list_location, name='list_location'),
     path('form-client', app.views.form_client, name='client-create'),
     path('form-property', app.views.form_property, name='property-create'),
     path('form-location/<int:id>/', app.views.register_location_form, name='location-create'),
+    path('reports/', app.views.report, name='reports'),
 
 ]
 if settings.DEBUG:

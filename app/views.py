@@ -37,17 +37,27 @@ def form_property(request):
             return redirect(list_location)
     return render(request, 'form_property.html', {'form': form})
 
+
 def register_location_form(request, id):
     get_property = Property.objects.get(id=id)
     form = RegisterLocationForm()
     if request.method == 'POST':
-        form = PropertyForm(request.POST)
+        form = RegisterLocationForm(request.POST)
         if form.is_valid():
             property_form = form.save(commit=False)
-            property_form.property = get_property #vai salvar o id da propriedade
-            property_form.is_locate = True
+            property_form.property = get_property  # vai salvar o id da propriedade
+            prop = Property.objects.get(id=id)
+            prop.is_locate = True
+            prop.save()
             property_form.save()
             return redirect(list_location)
     context = {'form': form, 'location': get_property}
     return render(request, 'form-location.html', context)
 
+
+def report(request):
+    property = Property.objects.all()
+    is_located = request.GET.get('is_locate')
+    if is_located:
+        property = Property.objects.filter(is_locate=is_located)
+    return render(request, 'report.html', {'property': property})

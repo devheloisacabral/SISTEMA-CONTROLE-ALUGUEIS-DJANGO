@@ -27,24 +27,24 @@
             </div>
 
             <div class="mt-3">
-                <p>Codígo: {{location.code}}</p>
-                <p>Endereço: {{location.address}}</p>
-                <p>Valor: {{location.price}}</p>
-                <div class="badge bg-success">Tipo: {{location.type_item}}</div>
+                <p>Code: {{location.code}}</p>
+                <p>Adress: {{location.address}}</p>
+                <p>Value: {{location.price}}</p>
+                <div class="badge bg-success">Type: {{location.type_item}}</div>
             </div>
 
         </div>
 
         <form class="col-md-4" action="{% url 'location-create' location.id %}" method="post">
             {% csrf_token %}
-            <h3>Formulário de Registro Locação</h3>
+            <h3>Location Form</h3>
             {% for field in form %}
             <div class="mt-3">
                 {{field.label}}
                 {{field}}
             </div>
             {% endfor %}
-            <input type="submit" class="btn btn-primary mt-3" value="Locar">
+            <input type="submit" class="btn btn-primary mt-3" value="Locate">
         </form>
     </div>
 </div>

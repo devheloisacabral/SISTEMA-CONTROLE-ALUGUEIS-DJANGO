@@ -34,10 +34,13 @@
 
                 <td scope="row">
                     {% if immobile.is_locate == True %}
-                    <i class="fas fa-check-circle fa-2x link-success"></i>
+                    <i class="fas fa-check-circle fa-2x link-success">LOCATED</i>
                     {% else %}
-                    <i class="fas fa-minus-circle fa-2x link-danger"></i>
+                    <i class="fas fa-minus-circle fa-2x link-danger">FREE</i>
                     {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'edit_property_status' immobile.id %}">Change Status</a>
                 </td>
 
             </tr>

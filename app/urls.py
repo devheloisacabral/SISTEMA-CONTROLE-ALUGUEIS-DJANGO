@@ -30,6 +30,7 @@ urlpatterns = [
     path('property/<int:pk>/delete/', app.views.delete_property, name='delete_property'),
     path('form-location/<int:id>/', app.views.register_location_form, name='location-create'),
     path('reports/', app.views.report, name='reports'),
+    path('reports/<int:pk>/edit', app.views.edit_property_status, name='edit_property_status')
 
 ]
 if settings.DEBUG:

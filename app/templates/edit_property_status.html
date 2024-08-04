@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Location Itens{% endblock %}
+
+{% block content %}
+<div style="margin-left: 100px; margin-top: 50px; width: 70%">
+    <form method="post">
+    {% csrf_token %}
+        {% if form.is_locate.value == True %}
+        <label>Would you like to change this property's status?</label>
+        {{ form.is_locate }}
+        <button type="submit">Save</button>
+        {% else %}
+        <label>You can't do this action here. You need to follow the flow to add some client to this property</label>
+        {% endif %}
+</form>
+</div>
+
+{% endblock %}

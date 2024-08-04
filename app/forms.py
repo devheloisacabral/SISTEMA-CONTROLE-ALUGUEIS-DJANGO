@@ -47,9 +47,24 @@ class PropertyForm(forms.ModelForm):
             else:
                 field.widget.attrs['class'] = 'form-control'
 
+
+class PropertyStatusForm(forms.ModelForm):
+    class Meta:
+        model = Property
+        fields = ['is_locate']  # Inclui apenas o campo 'is_locate'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field.widget.__class__ in [forms.CheckboxInput, forms.RadioSelect]:
+                field.widget.attrs['class'] = 'form-check-input'
+            else:
+                field.widget.attrs['class'] = 'form-control'
+
+
 class RegisterLocationForm(forms.ModelForm):
     dt_start = forms.DateTimeField(widget=forms.DateInput(format='%d-%m-%Y', attrs={'type': 'date', }))
-    dt_end = forms.DateTimeField(widget=forms.DateInput(format='%d-%m-%Y',attrs={'type': 'date',}))
+    dt_end = forms.DateTimeField(widget=forms.DateInput(format='%d-%m-%Y', attrs={'type': 'date', }))
 
     class Meta:
         model = RegisterLocation
@@ -59,4 +74,4 @@ class RegisterLocationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-              field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['class'] = 'form-control'

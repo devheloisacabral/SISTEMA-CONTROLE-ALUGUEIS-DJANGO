@@ -61,7 +61,6 @@ def delete_property(request, pk):
     return render(request, 'delete_property.html', {'property': property_instance})
 
 
-
 def register_location_form(request, id):
     get_property = Property.objects.get(id=id)
     form = RegisterLocationForm()
@@ -85,3 +84,17 @@ def report(request):
     if is_located:
         property = Property.objects.filter(is_locate=is_located)
     return render(request, 'report.html', {'property': property})
+
+
+
+def edit_property_status(request, pk):
+    property_instance = get_object_or_404(Property, pk=pk)
+    form = PropertyStatusForm(instance=property_instance)
+
+    if request.method == 'POST':
+        form = PropertyStatusForm(request.POST, instance=property_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('reports')
+
+    return render(request, 'edit_property_status.html', {'form': form})

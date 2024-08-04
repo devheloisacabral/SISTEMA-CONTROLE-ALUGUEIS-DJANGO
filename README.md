@@ -34,7 +34,6 @@ Adicione aqui uma imagem ilustrativa dos relatórios.
 
 
 ### 5. Desvinculação de Cliente e Imóvel
-Adicione aqui uma imagem ilustrativa da funcionalidade de desvinculação.
 - **Desvinculação:** Permite desvincular um cliente de um imóvel alugado, tornando o imóvel disponível novamente para novos aluguéis.
 
 ## Tecnologias Utilizadas
@@ -48,15 +47,15 @@ Adicione aqui uma imagem ilustrativa da funcionalidade de desvinculação.
    python -m venv venv
    source venv/bin/activate  # No Windows use `venv\Scripts\activate`
    ```
-4. Instale as dependências:
+2. Instale as dependências:
    ```bash
    pip install -r requirements.txt
    ```
-5. Execute as migrações do banco de dados:
+3. Execute as migrações do banco de dados:
    ```bash
    python manage.py migrate
    ```
-6. Inicie o servidor:
+4. Inicie o servidor:
    ```bash
    python manage.py runserver
    ```

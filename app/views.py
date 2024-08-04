@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
 
@@ -36,6 +36,30 @@ def form_property(request):
                     PropertyImage.objects.create(property_save=property_save, imagem=file)
             return redirect(list_location)
     return render(request, 'form_property.html', {'form': form})
+
+
+def edit_property(request, pk):
+    property_instance = get_object_or_404(Property, pk=pk)
+    form = PropertyForm(instance=property_instance)
+
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, instance=property_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('list_location')
+
+    return render(request, 'edit_property.html', {'form': form})
+
+
+def delete_property(request, pk):
+    property_instance = get_object_or_404(Property, pk=pk)
+    form = PropertyForm(instance=property_instance)
+
+    if request.method == 'POST':
+        property_instance.delete()
+        return redirect('list_location')
+    return render(request, 'delete_property.html', {'property': property_instance})
+
 
 
 def register_location_form(request, id):

@@ -24,6 +24,14 @@
                 <div>
                    <a href="{% url 'location-create' property.id %}" class="btn btn-primary">Locate this property</a>
                 </div>
+                <br>
+                <div>
+                   <a href="{% url 'edit_property' property.id %}" class="btn btn-primary">Edit this property</a>
+                </div>
+                <br>
+                <div>
+                   <a href="{% url 'delete_property' property.id %}" class="btn btn-primary">Delete this property</a>
+                </div>
             </div>
         </div>
         {% endfor %}

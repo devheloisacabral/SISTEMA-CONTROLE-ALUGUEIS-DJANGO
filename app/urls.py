@@ -26,6 +26,8 @@ urlpatterns = [
     path('location', app.views.list_location, name='list_location'),
     path('form-client', app.views.form_client, name='client-create'),
     path('form-property', app.views.form_property, name='property-create'),
+    path('property/<int:pk>/edit/', app.views.edit_property, name='edit_property'),
+    path('property/<int:pk>/delete/', app.views.delete_property, name='delete_property'),
     path('form-location/<int:id>/', app.views.register_location_form, name='location-create'),
     path('reports/', app.views.report, name='reports'),
 

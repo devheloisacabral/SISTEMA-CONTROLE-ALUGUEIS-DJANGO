@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Location Itens{% endblock %}
+
+{% block content %}
+<div style="margin-left: 100px; margin-top: 50px">
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete "{{ property.code }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm</button>
+        <button><a href="{% url 'list_location' %}">Cancel</a></button>
+    </form>
+</div>
+
+{% endblock %}
